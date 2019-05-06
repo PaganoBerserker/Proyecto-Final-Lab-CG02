@@ -1,3 +1,6 @@
+
+// Animación de carro montaña rusa ( i, I )
+
 #include "texture.h"
 #include "figuras.h"
 #include "Camera.h"
@@ -118,10 +121,12 @@ CModel oldhouse;
 
 //Animación del coche
 float angRot = 0.0;
-float movKitX = 0.0;
-float movKitZ = 0.0;
-float movKitY = 4.0;
+float movKitX;
+float movKitZ;
+float movKitY;
 float rotKit = 0.0;
+float rotKitZ = 0.0;
+float rotKitX = 0.0;
 float rotTires = 0.0;
 bool g_fanimacion = false;
 bool g_avanza = false;
@@ -135,6 +140,9 @@ bool recorrido5 = false;
 bool recorrido6 = false;
 bool recorrido7 = false;
 bool recorrido8 = false;
+bool recorrido9 = false;
+bool recorrido10 = false;
+bool recorrido11 = false;
 
 
 
@@ -181,19 +189,7 @@ void interpolation(void)
 void ciudad ()
 {
 
-	
-		glPushMatrix(); // Pavimento
-			glTranslatef(-47,0.0,-19);
-			glRotatef(90, 0, 1, 0);
-			//glScalef(40,0.1,7);
-			glScalef(200,0.1,250);
-			glDisable(GL_LIGHTING);
-			fig3.prisma2(text4.GLindex, 0);
-			glEnable(GL_LIGHTING);
-		glPopMatrix();
-
-
-		glPushMatrix(); //Casa01
+		/*glPushMatrix(); //Casa01
 			glTranslatef(0.0,3.0,7.0);
 			glRotatef(90,1,0,0);
 			glRotatef(180,0,0,1);
@@ -211,7 +207,20 @@ void ciudad ()
 			glDisable(GL_LIGHTING);
 			fig5.prisma2(text6.GLindex, 0);
 			glEnable(GL_LIGHTING);
-		glPopMatrix();
+		glPopMatrix();*/
+
+		//////////////////////////// Pavimento //////////////////////////////////////////
+		
+	glPushMatrix(); // Pavimento
+	glTranslatef(-47, 0.0, -19);
+	glRotatef(90, 0, 1, 0);
+	glScalef(200, 0.1, 250);
+	glDisable(GL_LIGHTING);
+	fig3.prisma2(text4.GLindex, 0);
+	glEnable(GL_LIGHTING);
+	glPopMatrix();
+		
+		///////////////////////////  Fin Pavimento /////////////////////////////////////
 
 
 		///////////////////////////// Montaña Rusa /////////////////////////////////////
@@ -1667,18 +1676,17 @@ void InitGL ( GLvoid )     // Inicializamos parametros
 	
 	llanta._3dsLoad("k_rueda.3ds");
 
-	casita._3dsLoad("Dollshouse.3ds");
+	/*casita._3dsLoad("Dollshouse.3ds");
 
 	oldhouse._3dsLoad("oldhouse/oldhouse.3ds");
 	oldhouse.LoadTextureImages();
 	oldhouse.GLIniTextures();
-	oldhouse.ReleaseTextureImages();
+	oldhouse.ReleaseTextureImages();*/
 	
 	objCamera.Position_Camera(0,2.5f,3, 0,2.5f,0, 0, 1, 0);
 
 	//NEW Crear una lista de dibujo
 	ciudad_display_list = createDL();
-	//montana_rusa_display_list = createDL();
 	//NEW Iniciar variables de KeyFrames
 	/*for(int i=0; i<MAX_FRAMES; i++)
 	{
@@ -1784,7 +1792,7 @@ void display ( void )   // Creamos la funcion donde se dibuja
 			glPopMatrix();
 
 
-			glPushMatrix(); //Casa M0delo 3ds
+			/*glPushMatrix(); //Casa M0delo 3ds
 				glTranslatef(-12.0,0.0,-9.0);
 				glScalef(0.3,0.3,0.3);
 				casita.GLrender(NULL,_SHADED, 1);
@@ -1794,19 +1802,22 @@ void display ( void )   // Creamos la funcion donde se dibuja
 				glTranslatef(-32.0,0.0,-9.0);
 				glScalef(0.7,0.7,0.7);
 				oldhouse.GLrender(NULL,_SHADED, 1);
-			glPopMatrix();
+			glPopMatrix();*/
 
 
 			
 
 			glPushMatrix();
-				glRotatef(90, 0, 1, 0);
-				glScalef(0.3, 0.3, 0.3);
+				glRotatef(270, 0, 1, 0);
+				glScalef(0.15, 0.15, 0.15);
 				
 
 
-				glTranslatef(movKitX, movKitY, movKitZ);
+				glTranslatef(-40, 13, -80);
 				glRotatef(rotKit, 0, 1, 0);
+				glRotatef(rotKitZ, 0, 0, 1);
+				glRotatef(rotKitX, 1, 0, 0);
+				glTranslatef(movKitX, movKitY, movKitZ);
 
 				kit.GLrender(NULL,_SHADED,1.0); //Dibujamos la carroceria
 				//llanta.GLrender(NULL,_SHADED,1.0);
@@ -1896,9 +1907,11 @@ void animacion()
 	{
 		if(recorrido1)
 		{
-			movKitZ = movKitZ+7;
+		
+			movKitZ = movKitZ + 1;
+			rotKit = (45, 1, 0, 1);
 
-			if(movKitZ>155)
+			if(movKitZ>13)
 			{
 				recorrido1 = false;
 				recorrido2 = true;
@@ -1906,10 +1919,13 @@ void animacion()
 		}
 		if(recorrido2)
 		{
-			rotKit = 90;
-			movKitX = movKitX + 7;
+			rotKit = 270;
+			movKitY = movKitY + 2;
+			movKitZ = movKitZ + 2;
+			movKitX = movKitX - 0.9;
 
-			if(movKitX > 125)
+
+			if(movKitY > 88)
 			{
 				recorrido2 = false;
 				recorrido3 = true;
@@ -1920,26 +1936,29 @@ void animacion()
 
 		if(recorrido3)
 		{
-			rotKit = 180; // La rotación necesaria para simular el giro del carro en la dirección correcta
-			movKitZ = movKitZ - 7; // La velocidad que toma sobre el eje Z
-			//movKitX = movKitX - 7; // La velocidad que toma sobre el eje X
-	
+			rotKit = 270; 
+			movKitX = movKitX - 2;
+			movKitY = movKitY - 2;
+			movKitZ = movKitZ - 2;
 
-			if(movKitZ < -155)
+			if(movKitZ < 84)
 			{
-				recorrido3 = false; // Se desactiva el recorrido actual (3)
-				recorrido4 = true; // Se activa el recorrido siguiente (5)
+				recorrido3 = false; 
+				recorrido4 = true; 
+
 			}
+
 		}
 
 
 		if(recorrido4)
 		{
-			rotKit = 360;
-			movKitX = movKitX - 7;
-			movKitY = movKitY + 5;
+			rotKit = 270;
+			movKitZ = movKitZ - 3;
+			movKitY = movKitY - 2;
+			movKitX = movKitX + 1;
 			
-			if(movKitX<0)
+			if(movKitZ<-13.0)
 			{
 				recorrido4 = false;
 				recorrido5 = true;
@@ -1949,9 +1968,12 @@ void animacion()
 	
 		if(recorrido5)
 		{
-			rotKit = 0;
-			movKitZ = movKitZ + 7;
-			if(movKitZ>0)
+			rotKit = 270;
+			movKitY = movKitY - 2;
+			movKitX = movKitX + 2;
+			movKitZ = movKitZ + 2;
+
+			if(movKitZ<-6)
 			{
 				recorrido5 = false;
 				recorrido6 = true;
@@ -1959,7 +1981,7 @@ void animacion()
 		}
 
 		if (recorrido6) {
-			rotKit = 0.0;
+			rotKit = 270;
 			movKitX = -45.0;
 			movKitZ += 7;
 			movKitY += 0.33;
@@ -1970,30 +1992,41 @@ void animacion()
 		}
 
 		if (recorrido7) {
-			rotKit = 0.0;
-			movKitX = 0.0;
+
+			rotKit = 270.0;
 			movKitZ += 7.0;
 
-			if (movKitZ >= 120.0) {
+			if (movKitZ > 0) {
 				recorrido7 = false;
 				recorrido8 = true;
 			}
 		}
 
 		if (recorrido8) {
-			rotKit = 0.0;
-			movKitX = 47.0;
+			rotKit = 270.0;
+			//movKitX = 47.0;
 			movKitZ += 7.0;
-			movKitY -= 0.3;
+			//movKitY -= 0.3;
 			if (movKitZ >= 150) {
 
-				movKitY = 0.0;
+				movKitZ = -20.0;
 				recorrido8 = false;
-				recorrido2 = true;
+				recorrido9 = true;
 			}
 		}
 
+		if (recorrido9) {
+			rotKit = 270.0;
+			movKitX = -0.5;
+			if (movKitZ >= -100) {
 
+				movKitY = 2;
+				recorrido9 = false;
+				recorrido1 = true;
+			}
+		}
+
+		
 
 
 	}
