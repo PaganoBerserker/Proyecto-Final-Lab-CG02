@@ -1,10 +1,10 @@
-
 // Animación de carro montaña rusa ( i, I )
-
+// Noche (n) Día (m)
 #include "texture.h"
 #include "figuras.h"
 #include "Camera.h"
 #include "cmodel/CModel.h"
+#include "Main.h"
 //Solo para Visual Studio 2015
 #if (_MSC_VER == 1900)
 #   pragma comment( lib, "legacy_stdio_definitions.lib" )
@@ -12,7 +12,6 @@
 
 //NEW//////////////////NEW//////////////////NEW//////////////////NEW////////////////
 static GLuint ciudad_display_list;	//Display List for the Monito
-
 
 //NEW// Keyframes
 float posX =0, posY = 2.5, posZ =-3.5, rotRodIzq = 0;
@@ -38,7 +37,6 @@ typedef struct _frame
 	float movBrazoDer;
 	float movBrazoDerInc;
 
-	
 }FRAME;
 
 FRAME KeyFrame[MAX_FRAMES];
@@ -57,17 +55,6 @@ CCamera objCamera;	//Create objet Camera
 GLfloat g_lookupdown = 0.0f;    // Look Position In The Z-Axis (NEW) 
 
 int font=(int)GLUT_BITMAP_HELVETICA_18;
-
-//Otras opciones son:
-/*GLUT_BITMAP_8_BY_13
-GLUT_BITMAP_9_BY_15
-GLUT_BITMAP_TIMES_ROMAN_10
-GLUT_BITMAP_TIMES_ROMAN_24
-GLUT_BITMAP_HELVETICA_10
-GLUT_BITMAP_HELVETICA_12
-GLUT_BITMAP_HELVETICA_18*/
-
-
 
 //GLfloat Diffuse[]= { 1.0f, 1.0f, 1.0f, 1.0f };				// Diffuse Light Values
 GLfloat Diffuse[]= { 0.5f, 0.5f, 0.5f, 1.0f };				// Diffuse Light Values
@@ -131,6 +118,14 @@ float rotTires = 0.0;
 bool g_fanimacion = false;
 bool g_avanza = false;
 
+//Cámara
+float camaraX = 0.0;
+float camaraY = 0.0;
+float camaraZ = 0.0;
+
+
+
+// Recorrido del carro en la montaña rusa
 bool circuito = false;
 bool recorrido1 = true;
 bool recorrido2 = false;
@@ -144,7 +139,11 @@ bool recorrido9 = false;
 bool recorrido10 = false;
 bool recorrido11 = false;
 
-
+//Movimiento Sol
+DWORD dwFrames = 0;
+DWORD dwCurrentTime = 0;
+DWORD dwLastUpdateTime = 0;
+DWORD dwElapsedTime = 0;
 
 void saveFrame(void)
 {
@@ -186,50 +185,64 @@ void interpolation(void)
 
 }
 
+
+GLfloat SunDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };			// Diffuse Light Values
+GLfloat SunSpecular[] = { 1.0, 1.0, 1.0, 1.0 };				// Specular Light Values
+GLfloat SunPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };			// Light Position
+
+
+GLfloat montanaDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };			// Diffuse Light Values
+GLfloat montanaSpecular[] = { 1.0, 1.0, 1.0, 1.0 };				// Specular Light Values
+GLfloat montanaPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };			// Light Position
+
+GLfloat pavimentoDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };			// Diffuse Light Values
+GLfloat pavimentoSpecular[] = { 1.0, 1.0, 1.0, 1.0 };				// Specular Light Values
+GLfloat pavimentoPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };			// Light Position
+int sol = 0;
+
 void ciudad ()
 {
 
-		/*glPushMatrix(); //Casa01
-			glTranslatef(0.0,3.0,7.0);
-			glRotatef(90,1,0,0);
-			glRotatef(180,0,0,1);
-			glScalef(6,5.0,6);
-			glDisable(GL_LIGHTING);
-			fig5.prisma2(text6.GLindex, 0);
-			glEnable(GL_LIGHTING);
-		glPopMatrix();
+	///////////////////////////////////// Sol-Luna ///////////////////////////////////
+	glPushMatrix(); //Sol
+	glTranslatef(50, 70, -50);
+	glRotatef(sol, 1.0, 0.0, 0.0);	//El Sol se mueve sobre X
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, SunDiffuse); // Material Sol
+	glMaterialfv(GL_FRONT, GL_SPECULAR, SunSpecular); // Material Sol
+	glDisable(GL_LIGHTING);
+	glColor3f(1.0, 1.0, 1.0);	//Sol Blanco
+	glutSolidSphere(4.0, 12, 12);  //Draw Sun (radio,H,V);
+	glEnable(GL_LIGHTING);
+	glPopMatrix(); //Fin Sol
+	/////////////////////////////////////////////////////////////////////////////
 
-		glPushMatrix(); //Casa01
-			glTranslatef(0.0,3.0,-7.0);
-			glRotatef(90,1,0,0);
-			//glRotatef(180,0,0,1);
-			glScalef(6,5.0,6);
-			glDisable(GL_LIGHTING);
-			fig5.prisma2(text6.GLindex, 0);
-			glEnable(GL_LIGHTING);
-		glPopMatrix();*/
-
-		//////////////////////////// Pavimento //////////////////////////////////////////
+	//////////////////////////// Pavimento //////////////////////////////////////////
 		
 	glPushMatrix(); // Pavimento
 	glTranslatef(-47, 0.0, -19);
 	glRotatef(90, 0, 1, 0);
 	glScalef(200, 0.1, 250);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, pavimentoDiffuse); // Material Pavimento
+	glMaterialfv(GL_FRONT, GL_SPECULAR, pavimentoSpecular); // Material Pavimento
 	glDisable(GL_LIGHTING);
+	glColor3f(0.156, 0.156, 0.156);	//Pavimento Oscuro
 	fig3.prisma2(text4.GLindex, 0);
 	glEnable(GL_LIGHTING);
 	glPopMatrix();
 		
-		///////////////////////////  Fin Pavimento /////////////////////////////////////
+	///////////////////////////  Fin Pavimento /////////////////////////////////////
 
 
-		///////////////////////////// Montaña Rusa /////////////////////////////////////
+	///////////////////////////// Montaña Rusa /////////////////////////////////////
 
 		glPushMatrix(); //////////////// Montaña Rusa tubo 1
 		glTranslatef(20.0, 1.5, -20.0);
 		glRotatef(90, 0, 1, 0);
 		glScalef(7.0, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -760,7 +773,10 @@ void ciudad ()
 		glTranslatef(13.1, 9.5, -14.6);
 		glRotatef(70, 0, 1, 1);
 		glScalef(6.0, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -769,7 +785,10 @@ void ciudad ()
 		glTranslatef(13.0, 1.5, -6.2);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.36, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -778,7 +797,10 @@ void ciudad ()
 		glTranslatef(12.0, 1.5, -6.2);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.36, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -787,7 +809,10 @@ void ciudad ()
 		glTranslatef(11.0, 1.5, -6.2);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.36, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -796,7 +821,10 @@ void ciudad ()
 		glTranslatef(10.6, 2.5, -7.8);
 		glRotatef(40, 0, 1, 1);
 		glScalef(0.9, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -805,7 +833,10 @@ void ciudad ()
 		glTranslatef(11.8, 5.0, -10.3);
 		glRotatef(37, 0, 1, 1);
 		glScalef(0.9, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -814,7 +845,10 @@ void ciudad ()
 		glTranslatef(12.8, 7.0, -12.3);
 		glRotatef(37, 0, 1, 1);
 		glScalef(0.9, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -832,7 +866,10 @@ void ciudad ()
 		glTranslatef(14.9, 11.0, -16.3);
 		glRotatef(37, 0, 1, 1);
 		glScalef(0.9, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -850,7 +887,10 @@ void ciudad ()
 		glTranslatef(17.5, 14.5, -18.7);
 		glRotatef(180, 0, 1, 0);
 		glScalef(1.0, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 0.0, 1);	// Montaña luz azul)
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1318,8 +1358,6 @@ void ciudad ()
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-
-
 		glPushMatrix(); ////////////////Apoyo 4 elevaciones
 		glTranslatef(14.0, 5.0, -19.0);
 		glRotatef(90, 0, 0, 1);
@@ -1353,7 +1391,10 @@ void ciudad ()
 		glTranslatef(17.0, 11.3, -20.6);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.8, 0.1, 3.3);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.9, 0.9, 0.0);
 		fig10.prisma(1, 4, 1, text9.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1362,7 +1403,10 @@ void ciudad ()
 		glTranslatef(15.5, 8.3, -20.6);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.8, 0.1, 3.3);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.7, 0.7, 0.0);
 		fig10.prisma(1, 4, 1, text9.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1601,11 +1645,11 @@ GLuint createDL()
 	return(ciudadDL);
 }
 
-////////////////////////////////////////////////////////////
-
 			
 void InitGL ( GLvoid )     // Inicializamos parametros
 {
+
+
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);				// Negro de fondo	
 
 	glEnable(GL_TEXTURE_2D);
@@ -1615,7 +1659,7 @@ void InitGL ( GLvoid )     // Inicializamos parametros
 	glLightfv(GL_LIGHT1, GL_POSITION, Position);
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, Diffuse);
 	//glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, Position2);
-	glEnable(GL_LIGHTING);
+	//glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	//glEnable(GL_LIGHT1);
 
@@ -1676,12 +1720,7 @@ void InitGL ( GLvoid )     // Inicializamos parametros
 	
 	llanta._3dsLoad("k_rueda.3ds");
 
-	/*casita._3dsLoad("Dollshouse.3ds");
-
-	oldhouse._3dsLoad("oldhouse/oldhouse.3ds");
-	oldhouse.LoadTextureImages();
-	oldhouse.GLIniTextures();
-	oldhouse.ReleaseTextureImages();*/
+	
 	
 	objCamera.Position_Camera(0,2.5f,3, 0,2.5f,0, 0, 1, 0);
 
@@ -1761,7 +1800,6 @@ void display ( void )   // Creamos la funcion donde se dibuja
 	
 	glLoadIdentity();
 	
-	
 	glPushMatrix();
 
 	glRotatef(g_lookupdown,1.0f,0,0);
@@ -1790,22 +1828,6 @@ void display ( void )   // Creamos la funcion donde se dibuja
 					monito();
 				glDisable ( GL_COLOR_MATERIAL );
 			glPopMatrix();
-
-
-			/*glPushMatrix(); //Casa M0delo 3ds
-				glTranslatef(-12.0,0.0,-9.0);
-				glScalef(0.3,0.3,0.3);
-				casita.GLrender(NULL,_SHADED, 1);
-			glPopMatrix();
-
-			glPushMatrix(); //Casa M0delo 3ds
-				glTranslatef(-32.0,0.0,-9.0);
-				glScalef(0.7,0.7,0.7);
-				oldhouse.GLrender(NULL,_SHADED, 1);
-			glPopMatrix();*/
-
-
-			
 
 			glPushMatrix();
 				glRotatef(270, 0, 1, 0);
@@ -1883,6 +1905,7 @@ void animacion()
 		fig3.text_izq=0;
 	if(fig3.text_der<0)
 		fig3.text_der=1;
+
 
 	//Movimiento del coche
 	if(g_fanimacion)
@@ -2004,9 +2027,8 @@ void animacion()
 
 		if (recorrido8) {
 			rotKit = 270.0;
-			//movKitX = 47.0;
 			movKitZ += 7.0;
-			//movKitY -= 0.3;
+		
 			if (movKitZ >= 150) {
 
 				movKitZ = -20.0;
@@ -2025,9 +2047,6 @@ void animacion()
 				recorrido1 = true;
 			}
 		}
-
-		
-
 
 	}
 
@@ -2205,7 +2224,30 @@ void keyboard ( unsigned char key, int x, int y )  // Create Keyboard Function
 			giroMonito--;
 			//printf("%f \n", giroMonito);
 			break;
-	
+
+		case 'n':
+			glDisable(GL_FRONT);
+			glDisable(GL_DIFFUSE); // Material Montaña
+			glDisable(GL_SPECULAR); // Material Montaña
+			glEnable(GL_LIGHTING);
+			glEnable(GL_LIGHT0);
+			glEnable(GL_LIGHT1);
+			glEnable ( GL_COLOR_MATERIAL );
+			glEnable(GL_CULL_FACE);
+			glCullFace(GL_BACK);
+			break;
+
+		case 'm':
+			glEnable(GL_FRONT);
+			glEnable(GL_DIFFUSE); // Material Montaña
+			glEnable(GL_SPECULAR); // Material Montaña
+			glDisable(GL_LIGHTING);
+			glDisable(GL_LIGHT0);
+			glDisable(GL_LIGHT1);
+			glDisable(GL_COLOR_MATERIAL);
+			glDisable(GL_CULL_FACE);
+			glCullFace(GL_BACK);
+			break;
 
 		case 27:        // Cuando Esc es presionado...
 			exit ( 0 );   // Salimos del programa
