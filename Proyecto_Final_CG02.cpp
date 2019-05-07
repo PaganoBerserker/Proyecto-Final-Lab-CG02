@@ -1,5 +1,5 @@
-// AnimaciÛn de carro montaÒa rusa ( i, I )
-// Noche (n) DÌa (m)
+// Animaci√≥n de carro monta√±a rusa ( i, I )
+// Noche (n) D√≠a (m)
 #include "texture.h"
 #include "figuras.h"
 #include "Camera.h"
@@ -78,9 +78,9 @@ CTexture text4;	//Pavimento
 CTexture text5;	//Pasto01
 CTexture text6;	//Casa01
 
-////////////////////////////////// MontaÒa Rusa///////////////////
+////////////////////////////////// Monta√±a Rusa///////////////////
 CTexture text7; // Tubo amarillo
-CTexture text8; //Apoyo met·lico
+CTexture text8; //Apoyo met√°lico
 CTexture text9; //Bandera carreras
 ///////////////////////////////////////////////////////////////////
 
@@ -88,6 +88,13 @@ CTexture text9; //Bandera carreras
 CTexture text10;
 CTexture text11;
 CTexture text12;
+//////////////////////////////////////////
+
+CTexture text18; //Tubo Azul Electrico
+CTexture text10;
+CTexture text20;
+CTexture text21;
+
 //////////////////////////////////////////
 CTexture tree;
 
@@ -99,9 +106,9 @@ CFiguras fig5;	//Casa01
 CFiguras fig6;
 CFiguras fig7;	//Para crear Monito
 
-////////////////////////////////// MontaÒa Rusa///////////////////
-CFiguras fig8;  // Tubo MontaÒa Rusa
-CFiguras fig9;  // Apoyo met·lico
+////////////////////////////////// Monta√±a Rusa///////////////////
+CFiguras fig8;  // Tubo Monta√±a Rusa
+CFiguras fig9;  // Apoyo met√°lico
 CFiguras fig10; //Bandera carreras
 ///////////////////////////////////////////////////////////////////
 
@@ -110,12 +117,19 @@ CFiguras fig11; //Tubo azul
 CFiguras fig12; //Puesto
 CFiguras fig13; //Puesto 2
 /////////////////////////////////////////////////////////////////
+
+CFiguras fig19;
+CFiguras fig10;
+CFiguras fig20;
+CFiguras fig21;
+
+//////////////////////////////////////////////////////////////////
 //Figuras de 3D Studio
 CModel kit;
 CModel llanta;
 
 
-//AnimaciÛn del coche
+//Animaci√≥n del coche
 float angRot = 0.0;
 float movKitX;
 float movKitZ;
@@ -127,14 +141,14 @@ float rotTires = 0.0;
 bool g_fanimacion = false;
 bool g_avanza = false;
 
-//C·mara
+//C√°mara
 float camaraX = 0.0;
 float camaraY = 0.0;
 float camaraZ = 0.0;
 
 
 
-// Recorrido del carro en la montaÒa rusa
+// Recorrido del carro en la monta√±a rusa
 bool circuito = false;
 bool recorrido1 = true;
 bool recorrido2 = false;
@@ -242,912 +256,912 @@ void ciudad ()
 	///////////////////////////  Fin Pavimento /////////////////////////////////////
 
 
-	///////////////////////////// MontaÒa Rusa /////////////////////////////////////
+	///////////////////////////// Monta√±a Rusa /////////////////////////////////////
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 1
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 1
 		glTranslatef(20.0, 1.5, -20.0);
 		glRotatef(90, 0, 1, 0);
 		glScalef(7.0, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 1
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 1
 		glTranslatef(19, 1.5, -33.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 2
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 2
 		glTranslatef(19, 1.5, -30.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 3
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 3
 		glTranslatef(19, 1.5, -27.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 4
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 4
 		glTranslatef(19, 1.5, -24.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 5
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 5
 		glTranslatef(19, 1.5, -21.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 6
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 6
 		glTranslatef(19, 1.5, -18.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 7
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 7
 		glTranslatef(19, 1.5, -15.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 8
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 8
 		glTranslatef(19, 1.5, -12.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 9
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 9
 		glTranslatef(19, 1.5, -9.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 10
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 10
 		glTranslatef(19, 1.5, -6.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 2
 		glTranslatef(18.0, 1.5, -20.0);
 		glRotatef(90, 0, 1, 0);
 		glScalef(7.0, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo vuelta 1
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo vuelta 1
 		glTranslatef(19.5, 1.5, -5.1);
 		glRotatef(60, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo vuelta 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo vuelta 2
 		glTranslatef(18.1, 1.5, -3.7);
 		glRotatef(30, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo vuelta 3
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo vuelta 3
 		glTranslatef(16.3, 1.5, -3.2);
 		glRotatef(60, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo vuelta 4
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo vuelta 4
 		glTranslatef(14.6, 1.5, -3.8);
 		glRotatef(330, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 2 vuelta 1
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 2 vuelta 1
 		glTranslatef(17.6, 1.5, -5.1);
 		glRotatef(60, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); /////////////// MontaÒa Rusa tubo 2 vuelta 2
+		glPushMatrix(); /////////////// Monta√±a Rusa tubo 2 vuelta 2
 		glTranslatef(16.2, 1.5, -4.2);
 		glRotatef(180, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 
 		glTranslatef(17.8, 1.5, -4.3);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 3.5, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 
 		glTranslatef(16.4, 1.5, -3.7);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 2.1, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 2
 		glTranslatef(18.5, 8.1, -10.7);
 		glRotatef(70, 0, 1, 1);
 		glScalef(6.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 3, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 1
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 1
 		glTranslatef(17.2, 8.1, -10.5);
 		glRotatef(70, 0, 1, 1);
 		glScalef(6.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 3, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 11
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 11
 		glTranslatef(14.9, 2.5, -4.8);
 		glRotatef(10, 1, 1, 1);
 		glScalef(0.5, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 2.7, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 11.5
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 11.5
 		glTranslatef(15.4, 3.5, -6.0);
 		glRotatef(10, 1, 1, 1);
 		glScalef(0.5, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 2.7, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 12
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 12
 		glTranslatef(16.5, 5.5, -7.8);
 		glRotatef(10, 1, 1, 1);
 		glScalef(0.5, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 2.7, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 13
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 13
 		glTranslatef(17.9, 8.5, -10.8);
 		glRotatef(10, 1, 1, 1);
 		glScalef(0.5, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 2.7, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 14
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 14
 		glTranslatef(19.4, 11.5, -13.8);
 		glRotatef(10, 1, 1, 1);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 2.7, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 1 vuelta parte 2 (1)
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 1 vuelta parte 2 (1)
 		glTranslatef(22.0, 14.5, -17.9);
 		glRotatef(60, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 2 vuelta parte 2 (1)
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 2 vuelta parte 2 (1)
 		glTranslatef(21.0, 14.5, -17.9);
 		glRotatef(60, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 1 vuelta parte 2 (2)
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 1 vuelta parte 2 (2)
 		glTranslatef(22.2, 14.5, -19.7);
 		glRotatef(120, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 2 vuelta parte 2 (2)
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 2 vuelta parte 2 (2)
 		glTranslatef(20.9, 14.5, -20.3);
 		glRotatef(180, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 1 vuelta parte 2 (2)
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 1 vuelta parte 2 (2)
 		glTranslatef(20.5, 14.5, -18.6);
 		glRotatef(180, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 1 curva fondo
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 1 curva fondo
 		glTranslatef(19.6, 1.5, -35.2);
 		glRotatef(290, 0, 1, 0);
 		glScalef(0.7, 0.2, 0.1);
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 1 curva fondo 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 1 curva fondo 2
 		glTranslatef(16.4, 1.5, -36.6);
 		glRotatef(180, 0, 1, 0);
 		glScalef(1.5, 0.2, 0.1);
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 2 curva fondo 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 2 curva fondo 2
 		glTranslatef(13.5, 1.5, -22.7);
 		glRotatef(90, 0, 1, 0);
 		glScalef(7.0, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 1 curva fondo
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 1 curva fondo
 		glTranslatef(16.2, 1.5, -35.3);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.64, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 2 curva fondo
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 2 curva fondo
 		glTranslatef(17.2, 1.5, -35.3);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.64, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 3 curva fondo
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 3 curva fondo
 		glTranslatef(14.8, 1.5, -35.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.66, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 3 perpendicular lado 2
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 3 perpendicular lado 2
 		glTranslatef(14.8, 1.5, -33.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 4 perpendicular lado 2
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 4 perpendicular lado 2
 		glTranslatef(14.8, 1.5, -31.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 5 perpendicular lado 2
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 5 perpendicular lado 2
 		glTranslatef(14.8, 1.5, -28.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 6 perpendicular lado 2
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 6 perpendicular lado 2
 		glTranslatef(14.8, 1.5, -25.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 7 perpendicular lado 2
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 7 perpendicular lado 2
 		glTranslatef(14.8, 1.5, -23.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 8 perpendicular lado 2
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 8 perpendicular lado 2
 		glTranslatef(14.8, 1.5, -21.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 9 perpendicular lado 2
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 9 perpendicular lado 2
 		glTranslatef(14.8, 1.5, -18.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 10 perpendicular lado 2
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 10 perpendicular lado 2
 		glTranslatef(14.8, 1.5, -15.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 11 perpendicular lado 2
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 11 perpendicular lado 2
 		glTranslatef(14.8, 1.5, -13.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 12 perpendicular lado 2
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 12 perpendicular lado 2
 		glTranslatef(14.8, 1.5, -11.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa lÌnea perpendicular 13 perpendicular lado 2
+		glPushMatrix(); //////////////// Monta√±a Rusa l√≠nea perpendicular 13 perpendicular lado 2
 		glTranslatef(14.8, 1.5, -9.3);
 		glRotatef(10, 0, 1, 0);
 		glScalef(0.625, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 1 curva fondo 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 1 curva fondo 2
 		glTranslatef(17.0, 1.5, -34.0);
 		glRotatef(180, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 1 curva fondo 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 1 curva fondo 2
 		glTranslatef(16.0, 1.5, -21.9);
 		glRotatef(90, 0, 1, 0);
 		glScalef(6.07, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 2 curva 3
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 2 curva 3
 		glTranslatef(13.2, 1.5, -7.8);
 		glRotatef(70, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular curva 3
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular curva 3
 		glTranslatef(15.6, 1.5, -8.7);
 		glRotatef(70, 0, 1, 0);
 		glScalef(0.6, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 1 curva 3
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 1 curva 3
 		glTranslatef(12.0, 1.5, -6.9);
 		glRotatef(180, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 1 inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 1 inclinaci√≥n 2
 		glTranslatef(15.1, 9.1, -14.7);
 		glRotatef(70, 0, 1, 1);
 		glScalef(5.8, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 2 perpendicular curva 3
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 2 perpendicular curva 3
 		glTranslatef(14.6, 1.5, -6.6);
 		glRotatef(60, 0, 1, 0);
 		glScalef(0.6, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 3 perpendicular curva 3
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 3 perpendicular curva 3
 		glTranslatef(12.0, 1.5, -5.5);
 		glRotatef(180, 1, 0, 0);
 		glScalef(1.0, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 4 perpendicular curva 3
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 4 perpendicular curva 3
 		glTranslatef(11.0, 1.5, -5.5);
 		glRotatef(180, 0, 1, 0);
 		glScalef(1.0, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 5 perpendicular curva 3
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 5 perpendicular curva 3
 		glTranslatef(9.0, 1.5, -6.1);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.3, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 2 inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 2 inclinaci√≥n 2
 		glTranslatef(13.1, 9.5, -14.6);
 		glRotatef(70, 0, 1, 1);
 		glScalef(6.0, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular 1 curva 3
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular 1 curva 3
 		glTranslatef(13.0, 1.5, -6.2);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.36, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular 2 curva 3
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular 2 curva 3
 		glTranslatef(12.0, 1.5, -6.2);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.36, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular 2 curva 3
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular 2 curva 3
 		glTranslatef(11.0, 1.5, -6.2);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.36, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular 1 inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular 1 inclinaci√≥n 2
 		glTranslatef(10.6, 2.5, -7.8);
 		glRotatef(40, 0, 1, 1);
 		glScalef(0.9, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular 2 inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular 2 inclinaci√≥n 2
 		glTranslatef(11.8, 5.0, -10.3);
 		glRotatef(37, 0, 1, 1);
 		glScalef(0.9, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular 3 inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular 3 inclinaci√≥n 2
 		glTranslatef(12.8, 7.0, -12.3);
 		glRotatef(37, 0, 1, 1);
 		glScalef(0.9, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz azul
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular 4 inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular 4 inclinaci√≥n 2
 		glTranslatef(14.0, 9.0, -14.3);
 		glRotatef(37, 0, 1, 1);
 		glScalef(0.9, 0.2, 0.1);
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular 5 inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular 5 inclinaci√≥n 2
 		glTranslatef(14.9, 11.0, -16.3);
 		glRotatef(37, 0, 1, 1);
 		glScalef(0.9, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz azul
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular 6 inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular 6 inclinaci√≥n 2
 		glTranslatef(16.0, 13.0, -18.7);
 		glRotatef(37, 0, 1, 1);
 		glScalef(0.9, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz azul
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 1 vuelta inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 1 vuelta inclinaci√≥n 2
 		glTranslatef(17.5, 14.5, -18.7);
 		glRotatef(180, 0, 1, 0);
 		glScalef(1.0, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo 2 vuelta inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo 2 vuelta inclinaci√≥n 2
 		glTranslatef(17.5, 14.5, -20.3);
 		glRotatef(180, 0, 1, 0);
 		glScalef(1.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular 1 vuelta inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular 1 vuelta inclinaci√≥n 2
 		glTranslatef(17.5, 14.4, -19.5);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular 2 vuelta inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular 2 vuelta inclinaci√≥n 2
 		glTranslatef(18.5, 14.4, -19.5);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular 3 vuelta inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular 3 vuelta inclinaci√≥n 2
 		glTranslatef(19.5, 14.4, -19.5);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular 4 vuelta inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular 4 vuelta inclinaci√≥n 2
 		glTranslatef(20.5, 14.4, -19.5);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		glPushMatrix(); //////////////// MontaÒa Rusa tubo perpendicular 4 vuelta inclinaciÛn 2
+		glPushMatrix(); //////////////// Monta√±a Rusa tubo perpendicular 4 vuelta inclinaci√≥n 2
 		glTranslatef(21.5, 14.4, -19.5);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1156,10 +1170,10 @@ void ciudad ()
 		glTranslatef(20.0, 1.0, -31.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1168,10 +1182,10 @@ void ciudad ()
 		glTranslatef(20.0, 1.0, -27.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0); // MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0); // Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1180,10 +1194,10 @@ void ciudad ()
 		glTranslatef(20.0, 1.0, -23.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);	// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);	// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1192,10 +1206,10 @@ void ciudad ()
 		glTranslatef(20.0, 1.0, -19.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1204,10 +1218,10 @@ void ciudad ()
 		glTranslatef(20.0, 1.0, -15.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0);	// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0);	// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1216,10 +1230,10 @@ void ciudad ()
 		glTranslatef(20.0, 1.0, -11.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa/////////////////////
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0, 1, 0);	// MontaÒa luz verde
+		glColor3f(0, 1, 0);	// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1228,10 +1242,10 @@ void ciudad ()
 		glTranslatef(20.0, 1.0, -7.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);	// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);	// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1244,10 +1258,10 @@ void ciudad ()
 		glTranslatef(18.0, 1.0, -31.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);	// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);	// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1256,10 +1270,10 @@ void ciudad ()
 		glTranslatef(18.0, 1.0, -27.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0); // MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0); // Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1268,10 +1282,10 @@ void ciudad ()
 		glTranslatef(18.0, 1.0, -23.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0); // MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0); // Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1280,10 +1294,10 @@ void ciudad ()
 		glTranslatef(18.0, 1.0, -19.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);	// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);	// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1292,10 +1306,10 @@ void ciudad ()
 		glTranslatef(18.0, 1.0, -15.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1304,10 +1318,10 @@ void ciudad ()
 		glTranslatef(18.0, 1.0, -11.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1316,8 +1330,8 @@ void ciudad ()
 		glTranslatef(18.0, 1.0, -7.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
@@ -1330,10 +1344,10 @@ void ciudad ()
 		glTranslatef(16.0, 1.0, -31.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1342,10 +1356,10 @@ void ciudad ()
 		glTranslatef(16.0, 1.0, -27.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1354,10 +1368,10 @@ void ciudad ()
 		glTranslatef(16.0, 1.0, -23.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1366,10 +1380,10 @@ void ciudad ()
 		glTranslatef(16.0, 1.0, -19.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1378,10 +1392,10 @@ void ciudad ()
 		glTranslatef(16.0, 1.0, -15.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1390,10 +1404,10 @@ void ciudad ()
 		glTranslatef(16.0, 1.0, -11.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1402,10 +1416,10 @@ void ciudad ()
 		glTranslatef(15.1, 1.0, -7.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1416,10 +1430,10 @@ void ciudad ()
 		glTranslatef(13.5, 1.0, -31.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1428,10 +1442,10 @@ void ciudad ()
 		glTranslatef(13.5, 1.0, -27.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1440,10 +1454,10 @@ void ciudad ()
 		glTranslatef(13.5, 1.0, -23.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1452,8 +1466,8 @@ void ciudad ()
 		glTranslatef(13.5, 1.0, -19.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
@@ -1464,10 +1478,10 @@ void ciudad ()
 		glTranslatef(13.5, 1.0, -15.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1476,8 +1490,8 @@ void ciudad ()
 		glTranslatef(13.5, 1.0, -11.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
@@ -1488,10 +1502,10 @@ void ciudad ()
 		glTranslatef(12.5, 1.0, -7.0);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1500,10 +1514,10 @@ void ciudad ()
 		glTranslatef(12.5, 1.0, -5.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1514,10 +1528,10 @@ void ciudad ()
 		glTranslatef(17.0, 1.0, -3.2);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1526,10 +1540,10 @@ void ciudad ()
 		glTranslatef(17.0, 1.0, -4.2);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1538,10 +1552,10 @@ void ciudad ()
 		glTranslatef(17.0, 1.0, -21.2);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.1, 0.5, 32.0);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1553,10 +1567,10 @@ void ciudad ()
 		glTranslatef(17.0, 0.5, -31.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.050, 7.0, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1565,10 +1579,10 @@ void ciudad ()
 		glTranslatef(16.8, 0.5, -27.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.050, 7.0, 0.1);		
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1577,10 +1591,10 @@ void ciudad ()
 		glTranslatef(17.0, 0.5, -23.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.050, 7.0, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1589,10 +1603,10 @@ void ciudad ()
 		glTranslatef(17.0, 0.5, -19.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.050, 7.0, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1601,8 +1615,8 @@ void ciudad ()
 		glTranslatef(17.0, 0.5, -15.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.050, 7.0, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
@@ -1613,10 +1627,10 @@ void ciudad ()
 		glTranslatef(17.0, 0.5, -11.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.050, 7.0, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1625,8 +1639,8 @@ void ciudad ()
 		glTranslatef(17.0, 0.5, -7.8);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.050, 7.0, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
@@ -1637,10 +1651,10 @@ void ciudad ()
 		glTranslatef(17.0, 3.0, -7.9);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.1, 0.1, 4.3);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1649,8 +1663,8 @@ void ciudad ()
 		glTranslatef(17.0, 5.0, -13.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.1, 0.1, 11.3);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
@@ -1661,8 +1675,8 @@ void ciudad ()
 		glTranslatef(14.0, 5.0, -13.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.1, 6.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
@@ -1673,10 +1687,10 @@ void ciudad ()
 		glTranslatef(12.5, 6.7, -13.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.8, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1685,8 +1699,8 @@ void ciudad ()
 		glTranslatef(14.5, 6.5, -13.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.7, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
@@ -1697,8 +1711,8 @@ void ciudad ()
 		glTranslatef(14.0, 5.0, -19.0);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.1, 6.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
@@ -1709,10 +1723,10 @@ void ciudad ()
 		glTranslatef(15.4, 9.4, -19.0);
 		glRotatef(90, 0, 0, 1);
 		glScalef(2.2, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1721,10 +1735,10 @@ void ciudad ()
 		glTranslatef(17.0, 9.3, -19.0);
 		glRotatef(90, 0, 0, 1);
 		glScalef(2.2, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 1.0, 0.0);// MontaÒa luz verde
+		glColor3f(0.0, 1.0, 0.0);// Monta√±a luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1735,8 +1749,8 @@ void ciudad ()
 		glTranslatef(17.0, 11.3, -20.6);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.8, 0.1, 3.3);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(1.0, 1.0, 1.0); // Blanco
 		fig10.prisma(1, 4, 1, text9.GLindex);
@@ -1747,15 +1761,15 @@ void ciudad ()
 		glTranslatef(15.5, 8.3, -20.6);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.8, 0.1, 3.3);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(1.0, 1.0, 1.0); // Blanco
 		fig10.prisma(1, 4, 1, text9.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
-		/////////////////////////////////// Fin montaÒa Rusa /////////////////////////////////
+		/////////////////////////////////// Fin monta√±a Rusa /////////////////////////////////
 
 		 //////////////// Postes de luz /////////////////////////////////////////
 
@@ -1763,8 +1777,8 @@ void ciudad ()
 		glTranslatef(10, 3, 0.6);
 		glRotatef(90, 0, 0, 1);
 		glScalef(1.0, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.8, 0.8, 0.8);
 		fig11.prisma(1, 4, 1, text10.GLindex);
@@ -1785,8 +1799,8 @@ void ciudad ()
 		glTranslatef(23, 3, -15);
 		glRotatef(90, 0, 0, 1);
 		glScalef(1.0, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.8, 0.8, 0.8);
 		fig11.prisma(1, 4, 1, text10.GLindex);
@@ -1807,8 +1821,8 @@ void ciudad ()
 		glTranslatef(23, 3, -10);
 		glRotatef(90, 0, 0, 1);
 		glScalef(1.0, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.8, 0.8, 0.8);
 		fig11.prisma(1, 4, 1, text10.GLindex);
@@ -1829,8 +1843,8 @@ void ciudad ()
 		glTranslatef(23, 3, -5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(1.0, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.8, 0.8, 0.8);
 		fig11.prisma(1, 4, 1, text10.GLindex);
@@ -1853,8 +1867,8 @@ void ciudad ()
 		glTranslatef(5, 3, -15);
 		glRotatef(90, 0, 0, 1);
 		glScalef(1.0, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.8, 0.8, 0.8);
 		fig11.prisma(1, 4, 1, text10.GLindex);
@@ -1875,8 +1889,8 @@ void ciudad ()
 		glTranslatef(5, 3, -10);
 		glRotatef(90, 0, 0, 1);
 		glScalef(1.0, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.8, 0.8, 0.8);
 		fig11.prisma(1, 4, 1, text10.GLindex);
@@ -1897,8 +1911,8 @@ void ciudad ()
 		glTranslatef(5, 3, -5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(1.0, 0.1, 0.1);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material MontaÒa
-		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material MontaÒa
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Monta√±a
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Monta√±a
 		glDisable(GL_LIGHTING);
 		glColor3f(0.8, 0.8, 0.8); //Blanquesino
 		fig11.prisma(1, 4, 1, text10.GLindex);
@@ -2123,6 +2137,169 @@ void ciudad ()
 		glPopMatrix(); //Fin Puesto
 
 		//////////////////////////////////// Fin Puestos Derechos///////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+	glPushMatrix();//Tubo 1
+	glColor3f(1.0, 2.0, 1.0);
+	glTranslatef(20, 30, -30.0);
+	glRotatef(90, 0, 1, 0);
+	glScalef(15.5, 1.0, 0.1);
+	glDisable(GL_LIGHTING);
+	fig19.prisma(2.0, 2.0, 1, text18.GLindex);
+	glEnable(GL_LIGHTING);
+	glPopMatrix();
+
+	glPushMatrix();//Tubo 2
+	glColor3f(1.0, 2.0, 1.0);
+	glTranslatef(25, 30, -30.0);
+	glRotatef(90, 0, 1, 0);
+	glScalef(15.5, 1.0, 0.1);
+	glDisable(GL_LIGHTING);
+	fig19.prisma(2.0, 2.0, 1, text18.GLindex);
+	glEnable(GL_LIGHTING);
+	glPopMatrix();
+
+	///////////////////////
+
+	glPushMatrix();//Tubo 3
+	glColor3f(1.0, 2.0, 1.0);
+	glTranslatef(20, 1, -30.0);
+	glRotatef(90, 0, 1, 0);
+	glScalef(15.5, 1.0, 0.1);
+	glDisable(GL_LIGHTING);
+	fig19.prisma(2.0, 2.0, 1, text18.GLindex);
+	glEnable(GL_LIGHTING);
+	glPopMatrix();
+
+	
+	glPushMatrix();//Tubo 4
+	glColor3f(1.0, 2.0, 1.0);
+	glTranslatef(25, 1, -30.0);
+	glRotatef(90, 0, 1, 0);
+	glScalef(15.5, 1.0, 0.1);
+	glDisable(GL_LIGHTING);
+	fig19.prisma(2.0, 2.0, 1, text18.GLindex);
+	glEnable(GL_LIGHTING);
+	glPopMatrix();
+
+	//////////////
+
+
+
+	glPushMatrix();//Tubo 9
+	glColor3f(1.0, 2.0, 1.0);
+	glTranslatef(20, 16, -45.0);
+	glRotatef(120, 1, 1, 1);
+	glScalef(15.5, 1.0, 0.1);
+	glDisable(GL_LIGHTING);
+	fig19.prisma(2.0, 2.0, 1, text18.GLindex);
+	glEnable(GL_LIGHTING);
+	glPopMatrix();
+
+
+	glPushMatrix();//Tubo 10
+	glColor3f(1.0, 2.0, 1.0);
+	glTranslatef(25, 16, -45.0);
+	glRotatef(120, 1, 1, 1);
+	glScalef(15.5, 1.0, 0.1);
+	glDisable(GL_LIGHTING);
+	fig19.prisma(2.0, 2.0, 1, text18.GLindex);
+	glEnable(GL_LIGHTING);
+	glPopMatrix();
+
+
+	///////////////
+
+
+	glPushMatrix();//Tubo 9
+	glColor3f(1.0, 2.0, 1.0);
+	glTranslatef(20, 16, -15.0);
+	glRotatef(120, 1, 1, 1);
+	glScalef(16.0, 1.0, 0.1);
+	glDisable(GL_LIGHTING);
+	fig19.prisma(2.0, 2.0, 1, text18.GLindex);
+	glEnable(GL_LIGHTING);
+	glPopMatrix();
+
+
+	glPushMatrix();//Tubo 10
+	glColor3f(1.0, 2.0, 1.0);
+	glTranslatef(25, 16, -15.0);
+	glRotatef(120, 1, 1, 1);
+	glScalef(16.0, 1.0, 0.1);
+	glDisable(GL_LIGHTING);
+	fig19.prisma(2.0, 2.0, 1, text18.GLindex);
+	glEnable(GL_LIGHTING);
+	glPopMatrix();
+
+
+
+	////////////////////////////
+
+	glPushMatrix(); //Cabina1
+	glTranslatef(22.5, 16, -45.0);
+	fig19.esfera(2.8, 12, 20, text20.GLindex);
+	glPushMatrix();
+	glPopMatrix();
+	glPopMatrix();
+
+
+
+	glPushMatrix(); //Cabina4
+	glTranslatef(22.5, 16, -15.0);
+	fig19.esfera(2.8, 12, 20, text20.GLindex);
+	glPushMatrix();
+	glPopMatrix();
+	glPopMatrix();
+
+
+	glPushMatrix(); //Cabina4
+	glTranslatef(22.5, 30, -30.0);
+	fig19.esfera(2.8, 12, 20, text20.GLindex);
+	glPushMatrix();
+	glPopMatrix();
+	glPopMatrix();
+
+
+	glPushMatrix(); //Cabina4
+	glTranslatef(22.5, 1, -30.0);
+	fig19.esfera(2.8, 12, 20, text20.GLindex);
+	glPushMatrix();
+	glPopMatrix();
+	glPopMatrix();
+
+
+	///////////////////////////
+
+
+
+	glPushMatrix();//Tubo 1
+	glColor3f(1.0, 2.0, 1.0);
+	glTranslatef(16, 8, -30.0);
+	glRotatef(120, 1, 1, 1);
+	glScalef(10.5, 1.0, 0.5);
+	glDisable(GL_LIGHTING);
+	fig19.prisma(2.0, 2.0, 1, text18.GLindex);
+	glEnable(GL_LIGHTING);
+	glPopMatrix();
+
+	glPushMatrix();//Tubo 2
+	glColor3f(1.0, 2.0, 1.0);
+	glTranslatef(28, 8, -30.0);
+	glRotatef(120, 1, 1, 1);
+	glScalef(10.5, 1.0, 0.5);
+	glDisable(GL_LIGHTING);
+	fig19.prisma(2.0, 2.0, 1, text18.GLindex);
+	glEnable(GL_LIGHTING);
+	glPopMatrix();
+
+
+	/////////////////////////////////////////////////////////
+	
+	
+	
+	
 
 }
 
@@ -2398,7 +2575,7 @@ void InitGL ( GLvoid )     // Inicializamos parametros
 	text1.BuildGLTexture();
 	text1.ReleaseImage();
 
-	///////////////////////////////////////////////MontaÒa Rusa///////
+	///////////////////////////////////////////////Monta√±a Rusa///////
 	text7.LoadBMP("montana_rusa/tubo_amarillo.bmp");		/////////
 	text7.BuildGLTexture();                                 /////////
 	text7.ReleaseImage();									////////
@@ -2429,6 +2606,22 @@ void InitGL ( GLvoid )     // Inicializamos parametros
 	text12.LoadBMP("montana_rusa/puesto2.bmp"); ////
 	text12.BuildGLTexture();                /////////
 	text12.ReleaseImage();                   ////////
+	////////////////////////////////////////////////
+	/////////////////////////////////////////////////
+		text20.LoadBMP("mac.bmp");
+	text20.BuildGLTexture();
+	text20.ReleaseImage();
+
+	text21.LoadBMP("terror.bmp");
+	text21.BuildGLTexture();
+	text21.ReleaseImage();
+
+
+	text20.LoadBMP("planta.bmp");
+	text20.BuildGLTexture();
+	text20.ReleaseImage();
+	
+	////////////////////////////////////////////////
 	////////////////////////////////////////////////
 
 	tree.LoadTGA("Tree.tga");
@@ -2564,7 +2757,7 @@ void display ( void )   // Creamos la funcion donde se dibuja
 				kit.GLrender(NULL,_SHADED,1.0); //Dibujamos la carroceria
 				//llanta.GLrender(NULL,_SHADED,1.0);
 
-				//Colocar aquÌ las llantas
+				//Colocar aqu√≠ las llantas
 				glPushMatrix(); //llanta frontal der
 					glTranslatef(-6,-1,7.5);
 					glRotatef(-rotTires,1,0,0);
@@ -2863,13 +3056,13 @@ void keyboard ( unsigned char key, int x, int y )  // Create Keyboard Function
 
 		case 'O':		//  
 		case 'o':
-				g_fanimacion^= true; //Activamos/desactivamos la animacÌon
+				g_fanimacion^= true; //Activamos/desactivamos la animac√≠on
 				circuito = false;
 			break;
 
 		case 'i':		//  
 		case 'I':
-				circuito^= true; //Activamos/desactivamos la animacÌon
+				circuito^= true; //Activamos/desactivamos la animac√≠on
 				g_fanimacion = false;
 			break;
 
@@ -3059,14 +3252,14 @@ int main ( int argc, char** argv )   // Main Function
 
   glutInit            (&argc, argv); // Inicializamos OpenGL
   glutInitDisplayMode (GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH); // Display Mode (Clores RGB y alpha | Buffer Doble )
-  glutInitWindowSize  (500, 500);	// TamaÒo de la Ventana
+  glutInitWindowSize  (500, 500);	// Tama√±o de la Ventana
   glutInitWindowPosition (0, 0);	//Posicion de la Ventana
   glutCreateWindow    ("Proyecto Final"); // Nombre de la Ventana
   //glutFullScreen     ( );         // Full Screen
   InitGL ();						// Parametros iniciales de la aplicacion
-  glutDisplayFunc     ( display );  //Indicamos a Glut funciÛn de dibujo
-  glutReshapeFunc     ( reshape );	//Indicamos a Glut funciÛn en caso de cambio de tamano
-  glutKeyboardFunc    ( keyboard );	//Indicamos a Glut funciÛn de manejo de teclado
+  glutDisplayFunc     ( display );  //Indicamos a Glut funci√≥n de dibujo
+  glutReshapeFunc     ( reshape );	//Indicamos a Glut funci√≥n en caso de cambio de tamano
+  glutKeyboardFunc    ( keyboard );	//Indicamos a Glut funci√≥n de manejo de teclado
   glutSpecialFunc     ( arrow_keys );	//Otras
   glutIdleFunc		  ( animacion );
 
