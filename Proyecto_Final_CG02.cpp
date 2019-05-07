@@ -2422,7 +2422,7 @@ void InitGL ( GLvoid )     // Inicializamos parametros
 	text11.BuildGLTexture();              /////////
 	text11.ReleaseImage();               //////////
 	                                      //////////
-	text4.LoadBMP("pavimento_1.bmp");        ///////
+	text4.LoadBMP("montana_rusa/pavimento_1.bmp");//
 	text4.BuildGLTexture();                /////////
 	text4.ReleaseImage();                  //////////
 											////////
