@@ -84,6 +84,9 @@ CTexture text8; //Apoyo metálico
 CTexture text9; //Bandera carreras
 ///////////////////////////////////////////////////////////////////
 
+/////////////////////Feria////////////////
+CTexture text10;
+//////////////////////////////////////////
 CTexture tree;
 
 CFiguras fig1;
@@ -100,11 +103,13 @@ CFiguras fig9;  // Apoyo metálico
 CFiguras fig10; //Bandera carreras
 ///////////////////////////////////////////////////////////////////
 
+////////////////////////////// Feria //////////////////////////////
+CFiguras fig11;
+/////////////////////////////////////////////////////////////////
 //Figuras de 3D Studio
 CModel kit;
 CModel llanta;
-CModel casita;
-CModel oldhouse;
+
 
 //Animación del coche
 float angRot = 0.0;
@@ -138,12 +143,6 @@ bool recorrido8 = false;
 bool recorrido9 = false;
 bool recorrido10 = false;
 bool recorrido11 = false;
-
-//Movimiento Sol
-DWORD dwFrames = 0;
-DWORD dwCurrentTime = 0;
-DWORD dwLastUpdateTime = 0;
-DWORD dwElapsedTime = 0;
 
 void saveFrame(void)
 {
@@ -190,15 +189,18 @@ GLfloat SunDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };			// Diffuse Light Values
 GLfloat SunSpecular[] = { 1.0, 1.0, 1.0, 1.0 };				// Specular Light Values
 GLfloat SunPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };			// Light Position
 
+GLfloat montanaDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };		// Diffuse Light Values
+GLfloat montanaSpecular[] = { 1.0, 1.0, 1.0, 1.0 };			// Specular Light Values
+GLfloat montanaPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };		// Light Position
 
-GLfloat montanaDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };			// Diffuse Light Values
-GLfloat montanaSpecular[] = { 1.0, 1.0, 1.0, 1.0 };				// Specular Light Values
-GLfloat montanaPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };			// Light Position
+GLfloat pavimentoDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };	// Diffuse Light Values
+GLfloat pavimentoSpecular[] = { 1.0, 1.0, 1.0, 1.0 };		// Specular Light Values
+GLfloat pavimentoPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };	// Light Position
 
-GLfloat pavimentoDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };			// Diffuse Light Values
-GLfloat pavimentoSpecular[] = { 1.0, 1.0, 1.0, 1.0 };				// Specular Light Values
-GLfloat pavimentoPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };			// Light Position
-int sol = 0;
+GLfloat focoDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };			// Diffuse Light Values
+GLfloat focoSpecular[] = { 1.0, 1.0, 1.0, 1.0 };			// Specular Light Values
+GLfloat focoPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };		// Light Position
+
 
 void ciudad ()
 {
@@ -206,14 +208,13 @@ void ciudad ()
 	///////////////////////////////////// Sol-Luna ///////////////////////////////////
 	glPushMatrix(); //Sol
 	glTranslatef(50, 70, -50);
-	glRotatef(sol, 1.0, 0.0, 0.0);	//El Sol se mueve sobre X
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, SunDiffuse); // Material Sol
-	glMaterialfv(GL_FRONT, GL_SPECULAR, SunSpecular); // Material Sol
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, SunDiffuse); // Material Sol-Luna
+	glMaterialfv(GL_FRONT, GL_SPECULAR, SunSpecular); // Material Sol-Luna
 	glDisable(GL_LIGHTING);
-	glColor3f(1.0, 1.0, 1.0);	//Sol Blanco
-	glutSolidSphere(4.0, 12, 12);  //Draw Sun (radio,H,V);
+	glColor3f(1.0, 1.0, 1.0);	//Sol-Luna Blanco
+	glutSolidSphere(7.0, 12, 12);  //Draw Sun (radio,H,V);
 	glEnable(GL_LIGHTING);
-	glPopMatrix(); //Fin Sol
+	glPopMatrix(); //Fin Sol - Luna
 	/////////////////////////////////////////////////////////////////////////////
 
 	//////////////////////////// Pavimento //////////////////////////////////////////
@@ -225,7 +226,7 @@ void ciudad ()
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, pavimentoDiffuse); // Material Pavimento
 	glMaterialfv(GL_FRONT, GL_SPECULAR, pavimentoSpecular); // Material Pavimento
 	glDisable(GL_LIGHTING);
-	glColor3f(0.156, 0.156, 0.156);	//Pavimento Oscuro
+	glColor3f(0.200, 0.200, 0.200);	//Pavimento Oscuro
 	fig3.prisma2(text4.GLindex, 0);
 	glEnable(GL_LIGHTING);
 	glPopMatrix();
@@ -242,7 +243,7 @@ void ciudad ()
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
 		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -251,7 +252,10 @@ void ciudad ()
 		glTranslatef(19, 1.5, -33.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -260,7 +264,10 @@ void ciudad ()
 		glTranslatef(19, 1.5, -30.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -269,7 +276,10 @@ void ciudad ()
 		glTranslatef(19, 1.5, -27.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -278,7 +288,10 @@ void ciudad ()
 		glTranslatef(19, 1.5, -24.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -287,7 +300,10 @@ void ciudad ()
 		glTranslatef(19, 1.5, -21.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -296,7 +312,10 @@ void ciudad ()
 		glTranslatef(19, 1.5, -18.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -305,7 +324,10 @@ void ciudad ()
 		glTranslatef(19, 1.5, -15.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -314,7 +336,10 @@ void ciudad ()
 		glTranslatef(19, 1.5, -12.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -323,7 +348,10 @@ void ciudad ()
 		glTranslatef(19, 1.5, -9.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -332,7 +360,10 @@ void ciudad ()
 		glTranslatef(19, 1.5, -6.0);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -341,7 +372,10 @@ void ciudad ()
 		glTranslatef(18.0, 1.5, -20.0);
 		glRotatef(90, 0, 1, 0);
 		glScalef(7.0, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -350,7 +384,10 @@ void ciudad ()
 		glTranslatef(19.5, 1.5, -5.1);
 		glRotatef(60, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -359,7 +396,10 @@ void ciudad ()
 		glTranslatef(18.1, 1.5, -3.7);
 		glRotatef(30, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -368,7 +408,10 @@ void ciudad ()
 		glTranslatef(16.3, 1.5, -3.2);
 		glRotatef(60, 1, 0, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -377,7 +420,10 @@ void ciudad ()
 		glTranslatef(14.6, 1.5, -3.8);
 		glRotatef(330, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -386,7 +432,10 @@ void ciudad ()
 		glTranslatef(17.6, 1.5, -5.1);
 		glRotatef(60, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -395,7 +444,10 @@ void ciudad ()
 		glTranslatef(16.2, 1.5, -4.2);
 		glRotatef(180, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -404,7 +456,10 @@ void ciudad ()
 		glTranslatef(17.8, 1.5, -4.3);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 3.5, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -413,7 +468,10 @@ void ciudad ()
 		glTranslatef(16.4, 1.5, -3.7);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 2.1, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -422,7 +480,10 @@ void ciudad ()
 		glTranslatef(18.5, 8.1, -10.7);
 		glRotatef(70, 0, 1, 1);
 		glScalef(6.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 3, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -431,7 +492,10 @@ void ciudad ()
 		glTranslatef(17.2, 8.1, -10.5);
 		glRotatef(70, 0, 1, 1);
 		glScalef(6.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 3, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -440,7 +504,10 @@ void ciudad ()
 		glTranslatef(14.9, 2.5, -4.8);
 		glRotatef(10, 1, 1, 1);
 		glScalef(0.5, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 2.7, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -449,7 +516,10 @@ void ciudad ()
 		glTranslatef(15.4, 3.5, -6.0);
 		glRotatef(10, 1, 1, 1);
 		glScalef(0.5, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 2.7, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -458,7 +528,10 @@ void ciudad ()
 		glTranslatef(16.5, 5.5, -7.8);
 		glRotatef(10, 1, 1, 1);
 		glScalef(0.5, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 2.7, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -467,7 +540,10 @@ void ciudad ()
 		glTranslatef(17.9, 8.5, -10.8);
 		glRotatef(10, 1, 1, 1);
 		glScalef(0.5, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 2.7, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -476,7 +552,10 @@ void ciudad ()
 		glTranslatef(19.4, 11.5, -13.8);
 		glRotatef(10, 1, 1, 1);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 2.7, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -485,7 +564,10 @@ void ciudad ()
 		glTranslatef(22.0, 14.5, -17.9);
 		glRotatef(60, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -494,7 +576,10 @@ void ciudad ()
 		glTranslatef(21.0, 14.5, -17.9);
 		glRotatef(60, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -503,7 +588,10 @@ void ciudad ()
 		glTranslatef(22.2, 14.5, -19.7);
 		glRotatef(120, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -512,7 +600,10 @@ void ciudad ()
 		glTranslatef(20.9, 14.5, -20.3);
 		glRotatef(180, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -521,7 +612,10 @@ void ciudad ()
 		glTranslatef(20.5, 14.5, -18.6);
 		glRotatef(180, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -531,6 +625,7 @@ void ciudad ()
 		glRotatef(290, 0, 1, 0);
 		glScalef(0.7, 0.2, 0.1);
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -540,6 +635,7 @@ void ciudad ()
 		glRotatef(180, 0, 1, 0);
 		glScalef(1.5, 0.2, 0.1);
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -548,7 +644,10 @@ void ciudad ()
 		glTranslatef(13.5, 1.5, -22.7);
 		glRotatef(90, 0, 1, 0);
 		glScalef(7.0, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -557,7 +656,10 @@ void ciudad ()
 		glTranslatef(16.2, 1.5, -35.3);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.64, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -566,7 +668,10 @@ void ciudad ()
 		glTranslatef(17.2, 1.5, -35.3);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.64, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -575,7 +680,10 @@ void ciudad ()
 		glTranslatef(14.8, 1.5, -35.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.66, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -584,7 +692,10 @@ void ciudad ()
 		glTranslatef(14.8, 1.5, -33.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -593,7 +704,10 @@ void ciudad ()
 		glTranslatef(14.8, 1.5, -31.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -602,7 +716,10 @@ void ciudad ()
 		glTranslatef(14.8, 1.5, -28.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -611,7 +728,10 @@ void ciudad ()
 		glTranslatef(14.8, 1.5, -25.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -620,7 +740,10 @@ void ciudad ()
 		glTranslatef(14.8, 1.5, -23.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -629,7 +752,10 @@ void ciudad ()
 		glTranslatef(14.8, 1.5, -21.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -638,7 +764,10 @@ void ciudad ()
 		glTranslatef(14.8, 1.5, -18.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -647,7 +776,10 @@ void ciudad ()
 		glTranslatef(14.8, 1.5, -15.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -656,7 +788,10 @@ void ciudad ()
 		glTranslatef(14.8, 1.5, -13.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -665,7 +800,10 @@ void ciudad ()
 		glTranslatef(14.8, 1.5, -11.3);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.64, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -674,7 +812,10 @@ void ciudad ()
 		glTranslatef(14.8, 1.5, -9.3);
 		glRotatef(10, 0, 1, 0);
 		glScalef(0.625, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -683,7 +824,10 @@ void ciudad ()
 		glTranslatef(17.0, 1.5, -34.0);
 		glRotatef(180, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -692,7 +836,10 @@ void ciudad ()
 		glTranslatef(16.0, 1.5, -21.9);
 		glRotatef(90, 0, 1, 0);
 		glScalef(6.07, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -701,7 +848,10 @@ void ciudad ()
 		glTranslatef(13.2, 1.5, -7.8);
 		glRotatef(70, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -710,7 +860,10 @@ void ciudad ()
 		glTranslatef(15.6, 1.5, -8.7);
 		glRotatef(70, 0, 1, 0);
 		glScalef(0.6, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -719,7 +872,10 @@ void ciudad ()
 		glTranslatef(12.0, 1.5, -6.9);
 		glRotatef(180, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -728,7 +884,10 @@ void ciudad ()
 		glTranslatef(15.1, 9.1, -14.7);
 		glRotatef(70, 0, 1, 1);
 		glScalef(5.8, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -737,7 +896,10 @@ void ciudad ()
 		glTranslatef(14.6, 1.5, -6.6);
 		glRotatef(60, 0, 1, 0);
 		glScalef(0.6, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -746,7 +908,10 @@ void ciudad ()
 		glTranslatef(12.0, 1.5, -5.5);
 		glRotatef(180, 1, 0, 0);
 		glScalef(1.0, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -755,7 +920,10 @@ void ciudad ()
 		glTranslatef(11.0, 1.5, -5.5);
 		glRotatef(180, 0, 1, 0);
 		glScalef(1.0, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -764,7 +932,10 @@ void ciudad ()
 		glTranslatef(9.0, 1.5, -6.1);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.3, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -776,7 +947,7 @@ void ciudad ()
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
 		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -788,7 +959,7 @@ void ciudad ()
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
 		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -800,7 +971,7 @@ void ciudad ()
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
 		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -812,7 +983,7 @@ void ciudad ()
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
 		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -824,7 +995,8 @@ void ciudad ()
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
 		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
+		glColor3f(0, 1, 0);	// Montaña luz verde
+		glColor3f(0.0, 1.0, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -836,7 +1008,8 @@ void ciudad ()
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
 		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
+		glColor3f(0, 1, 0);	// Montaña luz verde
+		glColor3f(0.0, 1.0, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -848,7 +1021,7 @@ void ciudad ()
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
 		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
+		glColor3f(0.0, 1.0, 0);	// Montaña luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -858,6 +1031,7 @@ void ciudad ()
 		glRotatef(37, 0, 1, 1);
 		glScalef(0.9, 0.2, 0.1);
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -869,7 +1043,7 @@ void ciudad ()
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
 		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 0.0, 1);	// Montaña luz azul
+		glColor3f(0.0, 1.0, 0);	// Montaña luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -878,7 +1052,10 @@ void ciudad ()
 		glTranslatef(16.0, 13.0, -18.7);
 		glRotatef(37, 0, 1, 1);
 		glScalef(0.9, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0);	// Montaña luz azul
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -890,7 +1067,7 @@ void ciudad ()
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
 		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
-		glColor3f(0.0, 0.0, 1);	// Montaña luz azul)
+		glColor3f(0.0, 1.0, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -899,7 +1076,10 @@ void ciudad ()
 		glTranslatef(17.5, 14.5, -20.3);
 		glRotatef(180, 0, 1, 0);
 		glScalef(1.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -908,7 +1088,10 @@ void ciudad ()
 		glTranslatef(17.5, 14.4, -19.5);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -917,7 +1100,10 @@ void ciudad ()
 		glTranslatef(18.5, 14.4, -19.5);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -926,7 +1112,10 @@ void ciudad ()
 		glTranslatef(19.5, 14.4, -19.5);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -935,7 +1124,10 @@ void ciudad ()
 		glTranslatef(20.5, 14.4, -19.5);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -944,7 +1136,10 @@ void ciudad ()
 		glTranslatef(21.5, 14.4, -19.5);
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0);	// Montaña luz verde
 		fig8.prisma(1, 4, 1, text7.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -953,7 +1148,10 @@ void ciudad ()
 		glTranslatef(20.0, 1.0, -31.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0);	// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -962,7 +1160,10 @@ void ciudad ()
 		glTranslatef(20.0, 1.0, -27.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0); // Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -971,7 +1172,10 @@ void ciudad ()
 		glTranslatef(20.0, 1.0, -23.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);	// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -980,7 +1184,10 @@ void ciudad ()
 		glTranslatef(20.0, 1.0, -19.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0);	// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -989,7 +1196,10 @@ void ciudad ()
 		glTranslatef(20.0, 1.0, -15.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0);	// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -998,7 +1208,10 @@ void ciudad ()
 		glTranslatef(20.0, 1.0, -11.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña/////////////////////
 		glDisable(GL_LIGHTING);
+		glColor3f(0, 1, 0);	// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1007,7 +1220,10 @@ void ciudad ()
 		glTranslatef(20.0, 1.0, -7.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);	// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1020,7 +1236,10 @@ void ciudad ()
 		glTranslatef(18.0, 1.0, -31.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);	// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1029,7 +1248,10 @@ void ciudad ()
 		glTranslatef(18.0, 1.0, -27.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0); // Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1038,7 +1260,10 @@ void ciudad ()
 		glTranslatef(18.0, 1.0, -23.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0); // Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1047,7 +1272,10 @@ void ciudad ()
 		glTranslatef(18.0, 1.0, -19.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);	// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1056,7 +1284,10 @@ void ciudad ()
 		glTranslatef(18.0, 1.0, -15.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1065,7 +1296,10 @@ void ciudad ()
 		glTranslatef(18.0, 1.0, -11.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1074,7 +1308,10 @@ void ciudad ()
 		glTranslatef(18.0, 1.0, -7.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1085,7 +1322,10 @@ void ciudad ()
 		glTranslatef(16.0, 1.0, -31.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1094,7 +1334,10 @@ void ciudad ()
 		glTranslatef(16.0, 1.0, -27.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1103,7 +1346,10 @@ void ciudad ()
 		glTranslatef(16.0, 1.0, -23.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1112,7 +1358,10 @@ void ciudad ()
 		glTranslatef(16.0, 1.0, -19.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1121,7 +1370,10 @@ void ciudad ()
 		glTranslatef(16.0, 1.0, -15.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1130,7 +1382,10 @@ void ciudad ()
 		glTranslatef(16.0, 1.0, -11.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1139,7 +1394,10 @@ void ciudad ()
 		glTranslatef(15.1, 1.0, -7.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1150,7 +1408,10 @@ void ciudad ()
 		glTranslatef(13.5, 1.0, -31.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1159,7 +1420,10 @@ void ciudad ()
 		glTranslatef(13.5, 1.0, -27.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1168,7 +1432,10 @@ void ciudad ()
 		glTranslatef(13.5, 1.0, -23.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1177,7 +1444,10 @@ void ciudad ()
 		glTranslatef(13.5, 1.0, -19.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1186,7 +1456,10 @@ void ciudad ()
 		glTranslatef(13.5, 1.0, -15.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1195,7 +1468,10 @@ void ciudad ()
 		glTranslatef(13.5, 1.0, -11.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1204,7 +1480,10 @@ void ciudad ()
 		glTranslatef(12.5, 1.0, -7.0);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1213,7 +1492,10 @@ void ciudad ()
 		glTranslatef(12.5, 1.0, -5.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1224,7 +1506,10 @@ void ciudad ()
 		glTranslatef(17.0, 1.0, -3.2);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1233,7 +1518,10 @@ void ciudad ()
 		glTranslatef(17.0, 1.0, -4.2);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.2, 0.2, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1242,7 +1530,10 @@ void ciudad ()
 		glTranslatef(17.0, 1.0, -21.2);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.1, 0.5, 32.0);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1254,7 +1545,10 @@ void ciudad ()
 		glTranslatef(17.0, 0.5, -31.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.050, 7.0, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1263,7 +1557,10 @@ void ciudad ()
 		glTranslatef(16.8, 0.5, -27.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.050, 7.0, 0.1);		
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1272,7 +1569,10 @@ void ciudad ()
 		glTranslatef(17.0, 0.5, -23.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.050, 7.0, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1281,7 +1581,10 @@ void ciudad ()
 		glTranslatef(17.0, 0.5, -19.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.050, 7.0, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1290,7 +1593,10 @@ void ciudad ()
 		glTranslatef(17.0, 0.5, -15.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.050, 7.0, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1299,7 +1605,10 @@ void ciudad ()
 		glTranslatef(17.0, 0.5, -11.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.050, 7.0, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1308,7 +1617,10 @@ void ciudad ()
 		glTranslatef(17.0, 0.5, -7.8);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.050, 7.0, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1317,7 +1629,10 @@ void ciudad ()
 		glTranslatef(17.0, 3.0, -7.9);
 		glRotatef(90, 1, 0, 0);
 		glScalef(0.1, 0.1, 4.3);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1326,7 +1641,10 @@ void ciudad ()
 		glTranslatef(17.0, 5.0, -13.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.1, 0.1, 11.3);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1335,7 +1653,10 @@ void ciudad ()
 		glTranslatef(14.0, 5.0, -13.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.1, 6.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1344,7 +1665,10 @@ void ciudad ()
 		glTranslatef(12.5, 6.7, -13.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.8, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1353,7 +1677,10 @@ void ciudad ()
 		glTranslatef(14.5, 6.5, -13.5);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.7, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1362,7 +1689,10 @@ void ciudad ()
 		glTranslatef(14.0, 5.0, -19.0);
 		glRotatef(90, 0, 0, 1);
 		glScalef(0.1, 6.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1371,7 +1701,10 @@ void ciudad ()
 		glTranslatef(15.4, 9.4, -19.0);
 		glRotatef(90, 0, 0, 1);
 		glScalef(2.2, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1380,7 +1713,10 @@ void ciudad ()
 		glTranslatef(17.0, 9.3, -19.0);
 		glRotatef(90, 0, 0, 1);
 		glScalef(2.2, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
+		glColor3f(0.0, 1.0, 0.0);// Montaña luz verde
 		fig9.prisma(1, 4, 1, text8.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1394,7 +1730,7 @@ void ciudad ()
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
 		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
-		glColor3f(0.9, 0.9, 0.0);
+		glColor3f(1.0, 1.0, 1.0); // Blanco
 		fig10.prisma(1, 4, 1, text9.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
@@ -1406,12 +1742,175 @@ void ciudad ()
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
 		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
 		glDisable(GL_LIGHTING);
-		glColor3f(0.7, 0.7, 0.0);
+		glColor3f(1.0, 1.0, 1.0); // Blanco
 		fig10.prisma(1, 4, 1, text9.GLindex);
 		glEnable(GL_LIGHTING);
 		glPopMatrix();
 
 		/////////////////////////////////// Fin montaña Rusa /////////////////////////////////
+
+		 //////////////// Postes de luz /////////////////////////////////////////
+
+		glPushMatrix(); ///////////// Poste
+		glTranslatef(10, 3, 0.6);
+		glRotatef(90, 0, 0, 1);
+		glScalef(1.0, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
+		glDisable(GL_LIGHTING);
+		glColor3f(0.8, 0.8, 0.8);
+		fig11.prisma(1, 4, 1, text10.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix();
+
+		glPushMatrix(); //Foco
+		glTranslatef(10, 5, 0.6);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, focoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, focoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 0);	//Amarillo
+		fig11.esfera(1, 12, 12, text9.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Foco
+
+		glPushMatrix(); /////////////Poste 2
+		glTranslatef(23, 3, -15);
+		glRotatef(90, 0, 0, 1);
+		glScalef(1.0, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
+		glDisable(GL_LIGHTING);
+		glColor3f(0.8, 0.8, 0.8);
+		fig11.prisma(1, 4, 1, text10.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix();
+
+		glPushMatrix(); //Foco 2
+		glTranslatef(23, 5, -15);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, focoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, focoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 0);	//Amarillo
+		fig11.esfera(1, 12, 12, text9.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Foco
+
+		glPushMatrix(); /////////////Poste 3
+		glTranslatef(23, 3, -10);
+		glRotatef(90, 0, 0, 1);
+		glScalef(1.0, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
+		glDisable(GL_LIGHTING);
+		glColor3f(0.8, 0.8, 0.8);
+		fig11.prisma(1, 4, 1, text10.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix();
+
+		glPushMatrix(); //Foco 3
+		glTranslatef(23, 5, -10);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, focoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, focoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 0);	//Amarillo
+		fig11.esfera(1, 12, 12, text9.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Foco
+
+		glPushMatrix(); /////////////Poste 4
+		glTranslatef(23, 3, -5);
+		glRotatef(90, 0, 0, 1);
+		glScalef(1.0, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
+		glDisable(GL_LIGHTING);
+		glColor3f(0.8, 0.8, 0.8);
+		fig11.prisma(1, 4, 1, text10.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix();
+
+		glPushMatrix(); //Foco 4
+		glTranslatef(23, 5, -5);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, focoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, focoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 0);	//Amarillo
+		fig11.esfera(1, 12, 12, text9.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Foco
+
+
+
+		glPushMatrix(); /////////////Poste 5
+		glTranslatef(5, 3, -15);
+		glRotatef(90, 0, 0, 1);
+		glScalef(1.0, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
+		glDisable(GL_LIGHTING);
+		glColor3f(0.8, 0.8, 0.8);
+		fig11.prisma(1, 4, 1, text10.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix();
+
+		glPushMatrix(); //Foco 5
+		glTranslatef(5, 5, -15);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, focoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, focoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 0);	//Amarillo
+		fig11.esfera(1, 12, 12, text9.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Foco
+
+		glPushMatrix(); /////////////Poste 6
+		glTranslatef(5, 3, -10);
+		glRotatef(90, 0, 0, 1);
+		glScalef(1.0, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
+		glDisable(GL_LIGHTING);
+		glColor3f(0.8, 0.8, 0.8);
+		fig11.prisma(1, 4, 1, text10.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix();
+
+		glPushMatrix(); //Foco 6
+		glTranslatef(5, 5, -10);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, focoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, focoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 0);	//Amarillo
+		fig11.esfera(1, 12, 12, text9.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Foco
+
+		glPushMatrix(); /////////////Poste 7
+		glTranslatef(5, 3, -5);
+		glRotatef(90, 0, 0, 1);
+		glScalef(1.0, 0.1, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, montanaDiffuse); // Material Montaña
+		glMaterialfv(GL_FRONT, GL_SPECULAR, montanaSpecular); // Material Montaña
+		glDisable(GL_LIGHTING);
+		glColor3f(0.8, 0.8, 0.8); //Blanquesino
+		fig11.prisma(1, 4, 1, text10.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix();
+
+		glPushMatrix(); //Foco 7
+		glTranslatef(5, 5, -5);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, focoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, focoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 0);	//Amarillo
+		fig11.esfera(1, 12, 12, text9.GLindex); 
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Foco
+
+		///////////////////////////////// Fin Focos ////////////////////////////////////////////////////////
+
+
+
 }
 
 
@@ -1491,10 +1990,11 @@ void arbol_blend()
 		glEnd();	
 	glPopMatrix();
 
-	glPushMatrix();
+	glPushMatrix();////////////////////////////////////////////////////////////////////
 		glRotatef(45, 0, 1, 0);
 		glBegin(GL_QUADS); //plano
-			glColor3f(1.0, 1.0, 1.0);
+		glColor3f(0.9, 0.9, 0.0);
+			//glColor3f(1.0, 1.0, 1.0);
 			glNormal3f( 0.0f, 0.0f, 1.0f);
 			glTexCoord2f(0.0f, 0.0f); glVertex3f(-10.0, 0.0, 0.0);
 			glTexCoord2f(1.0f, 0.0f); glVertex3f(10.0, 0.0, 0.0);
@@ -1644,7 +2144,6 @@ GLuint createDL()
 
 	return(ciudadDL);
 }
-
 			
 void InitGL ( GLvoid )     // Inicializamos parametros
 {
@@ -1659,6 +2158,8 @@ void InitGL ( GLvoid )     // Inicializamos parametros
 	glLightfv(GL_LIGHT1, GL_POSITION, Position);
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, Diffuse);
 	//glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, Position2);
+
+	
 	//glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	//glEnable(GL_LIGHT1);
@@ -1709,6 +2210,10 @@ void InitGL ( GLvoid )     // Inicializamos parametros
 	text9.BuildGLTexture();								//////////
 	text9.ReleaseImage();								//////////
 	//////////////////////////////////////////////////////////////
+
+	text10.LoadBMP("montana_rusa/tubo_azul.bmp");		
+	text10.BuildGLTexture();								
+	text10.ReleaseImage();
 
 
 	tree.LoadTGA("Tree.tga");
@@ -2226,9 +2731,7 @@ void keyboard ( unsigned char key, int x, int y )  // Create Keyboard Function
 			break;
 
 		case 'n':
-			glDisable(GL_FRONT);
-			glDisable(GL_DIFFUSE); // Material Montaña
-			glDisable(GL_SPECULAR); // Material Montaña
+
 			glEnable(GL_LIGHTING);
 			glEnable(GL_LIGHT0);
 			glEnable(GL_LIGHT1);
@@ -2238,9 +2741,7 @@ void keyboard ( unsigned char key, int x, int y )  // Create Keyboard Function
 			break;
 
 		case 'm':
-			glEnable(GL_FRONT);
-			glEnable(GL_DIFFUSE); // Material Montaña
-			glEnable(GL_SPECULAR); // Material Montaña
+	
 			glDisable(GL_LIGHTING);
 			glDisable(GL_LIGHT0);
 			glDisable(GL_LIGHT1);
