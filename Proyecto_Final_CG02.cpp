@@ -86,6 +86,8 @@ CTexture text9; //Bandera carreras
 
 /////////////////////Feria////////////////
 CTexture text10;
+CTexture text11;
+CTexture text12;
 //////////////////////////////////////////
 CTexture tree;
 
@@ -104,7 +106,9 @@ CFiguras fig10; //Bandera carreras
 ///////////////////////////////////////////////////////////////////
 
 ////////////////////////////// Feria //////////////////////////////
-CFiguras fig11;
+CFiguras fig11; //Tubo azul
+CFiguras fig12; //Puesto
+CFiguras fig13; //Puesto 2
 /////////////////////////////////////////////////////////////////
 //Figuras de 3D Studio
 CModel kit;
@@ -200,6 +204,10 @@ GLfloat pavimentoPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };	// Light Position
 GLfloat focoDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };			// Diffuse Light Values
 GLfloat focoSpecular[] = { 1.0, 1.0, 1.0, 1.0 };			// Specular Light Values
 GLfloat focoPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };		// Light Position
+
+GLfloat puestoDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };		// Diffuse Light Values
+GLfloat puestoSpecular[] = { 1.0, 1.0, 1.0, 1.0 };			// Specular Light Values
+GLfloat puestoPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };		// Light Position
 
 
 void ciudad ()
@@ -1909,7 +1917,212 @@ void ciudad ()
 
 		///////////////////////////////// Fin Focos ////////////////////////////////////////////////////////
 
+		///////////////////////////////////////// Puestos Izquierdos ///////////////////////////////////////
 
+		glPushMatrix(); //Puesto 1
+		glTranslatef(-10, 2, -15);
+		glScalef(1.0, 1.0, 1.0);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text11.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Puesto
+
+		glPushMatrix(); //Puesto 2
+		glTranslatef(-10, 6, -15);
+		glScalef(1.0, 0.1, 1.0);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text11.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Pesto
+
+		glPushMatrix(); //Puesto 3
+		glTranslatef(-10, 4.5, -16.0);
+		glScalef(1.0, 1.5, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text11.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Foco
+
+		glPushMatrix(); //Puesto 1 (2)
+		glTranslatef(-10, 2, -5);
+		glScalef(1.0, 1.0, 1.0);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text12.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Puesto
+
+		glPushMatrix(); //Puesto 2 (2)
+		glTranslatef(-10, 6, -5);
+		glScalef(1.0, 0.1, 1.0);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text12.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Puesto
+
+		glPushMatrix(); //Puesto 3 (2)
+		glTranslatef(-10, 4.5, -6.0);
+		glScalef(1.0, 1.5, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text12.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Puesto
+
+		glPushMatrix(); //Puesto 1 (3)
+		glTranslatef(-10, 2, 5);
+		glScalef(1.0, 1.0, 1.0);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text11.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Puesto
+
+		glPushMatrix(); //Puesto 2 (3)
+		glTranslatef(-10, 6, 5);
+		glScalef(1.0, 0.1, 1.0);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text11.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Puesto
+
+		glPushMatrix(); //Puesto 3 (3)
+		glTranslatef(-10, 4.5, 4.0);
+		glScalef(1.0, 1.5, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text11.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Puesto
+
+
+		//////////////////////////////////// Fin Puestos Izquierdos///////////////////////////////////////
+
+				///////////////////////////////////////// Puestos Derechos ///////////////////////////////////////
+
+		glPushMatrix(); //Puesto 1
+		glTranslatef(30, 2, -15);
+		glScalef(1.0, 1.0, 1.0);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text11.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Puesto
+
+		glPushMatrix(); //Puesto 2
+		glTranslatef(30, 6, -15);
+		glScalef(1.0, 0.1, 1.0);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text11.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Pesto
+
+		glPushMatrix(); //Puesto 3
+		glTranslatef(30, 4.5, -16.0);
+		glScalef(1.0, 1.5, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text11.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Foco
+
+		glPushMatrix(); //Puesto 1 (2)
+		glTranslatef(30, 2, -5);
+		glScalef(1.0, 1.0, 1.0);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text12.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Puesto
+
+		glPushMatrix(); //Puesto 2 (2)
+		glTranslatef(30, 6, -5);
+		glScalef(1.0, 0.1, 1.0);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text12.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Puesto
+
+		glPushMatrix(); //Puesto 3 (2)
+		glTranslatef(30, 4.5, -6.0);
+		glScalef(1.0, 1.5, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text12.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Puesto
+
+		glPushMatrix(); //Puesto 1 (3)
+		glTranslatef(30, 2, 5);
+		glScalef(1.0, 1.0, 1.0);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text11.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Puesto
+
+		glPushMatrix(); //Puesto 2 (3)
+		glTranslatef(30, 6, 5);
+		glScalef(1.0, 0.1, 1.0);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text11.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Puesto
+
+		glPushMatrix(); //Puesto 3 (3)
+		glTranslatef(30, 4.5, 4.0);
+		glScalef(1.0, 1.5, 0.1);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, puestoDiffuse); // Material Foco
+		glMaterialfv(GL_FRONT, GL_SPECULAR, puestoSpecular); // Material Foco
+		glDisable(GL_LIGHTING);
+		glColor3f(1, 1, 1);	//Blanco
+		fig12.prisma(2, 4, 2, text11.GLindex);
+		glEnable(GL_LIGHTING);
+		glPopMatrix(); //Fin Puesto
+
+		//////////////////////////////////// Fin Puestos Derechos///////////////////////////////////////
 
 }
 
@@ -2185,18 +2398,6 @@ void InitGL ( GLvoid )     // Inicializamos parametros
 	text1.BuildGLTexture();
 	text1.ReleaseImage();
 
-	text4.LoadBMP("pavimento_1.bmp");
-	text4.BuildGLTexture();
-	text4.ReleaseImage();
-
-	text5.LoadTGA("city/pasto01.tga");
-	text5.BuildGLTexture();
-	text5.ReleaseImage();
-
-	text6.LoadTGA("city/casa01.tga");
-	text6.BuildGLTexture();
-	text6.ReleaseImage();
-
 	///////////////////////////////////////////////Montaña Rusa///////
 	text7.LoadBMP("montana_rusa/tubo_amarillo.bmp");		/////////
 	text7.BuildGLTexture();                                 /////////
@@ -2211,10 +2412,24 @@ void InitGL ( GLvoid )     // Inicializamos parametros
 	text9.ReleaseImage();								//////////
 	//////////////////////////////////////////////////////////////
 
-	text10.LoadBMP("montana_rusa/tubo_azul.bmp");		
-	text10.BuildGLTexture();								
-	text10.ReleaseImage();
 
+	///////////////////////////////// Feria//////////
+	text10.LoadBMP("montana_rusa/tubo_azul.bmp");////		
+	text10.BuildGLTexture();					/////			
+	text10.ReleaseImage();                   ///////
+	                                         ///////
+	text11.LoadBMP("montana_rusa/puesto.bmp"); ////
+	text11.BuildGLTexture();              /////////
+	text11.ReleaseImage();               //////////
+	                                      //////////
+	text4.LoadBMP("pavimento_1.bmp");        ///////
+	text4.BuildGLTexture();                /////////
+	text4.ReleaseImage();                  //////////
+											////////
+	text12.LoadBMP("montana_rusa/puesto2.bmp"); ////
+	text12.BuildGLTexture();                /////////
+	text12.ReleaseImage();                   ////////
+	////////////////////////////////////////////////
 
 	tree.LoadTGA("Tree.tga");
 	tree.BuildGLTexture();
